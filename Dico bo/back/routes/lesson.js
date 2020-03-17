@@ -1,9 +1,6 @@
 const express = require('express') ;
 const router = express.Router() ;
 const Lesson = require('../models/lesson')
-const bodyParser = require('body-parser');
-
-router.use(bodyParser.json());
 
 router.route('/')
     .get((req, res, next) => {
