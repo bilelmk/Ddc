@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>modules</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngFor="let module of modules">
+    <p (click)="speek(module.module_name)" >{{module.module_name}}</p>
+    <img style="width: 50px" src="{{module.image}}">
+  </div>
+  <p (click)="speek('france')" >france</p>
+
+
+  <p (click)="speek('corona')" >corona</p>
+  <p (click)="speek('virus')" >virus</p>
+
+</ion-content>

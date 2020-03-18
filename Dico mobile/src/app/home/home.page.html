@@ -13,8 +13,17 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div>
+
+    <p *ngIf="loading" style="background-color: red">a </p>
+
+<!--      <p (click)="speek1('bonjour')" >test</p>-->
+
+<!--      <p (click)="speek2('bonjour')" >test</p>-->
+    <button (click)="start()">En Commence</button>
+
+<!--      <div *ngFor="let module of modules">-->
+<!--&lt;!&ndash;      <p (click)="speek('sdfgv')">{{module.module_name}}</p>&ndash;&gt;-->
+<!--    </div>-->
   </div>
 </ion-content>

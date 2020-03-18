@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -10,7 +10,19 @@ import { MatInputModule,
   MatToolbarModule,
   MatExpansionModule,
   MatProgressSpinnerModule,
-  MatPaginatorModule } from "@angular/material";
+  MatPaginatorModule,
+  MatRippleModule,
+  MatFormFieldModule,
+  MatTooltipModule,
+  MatSelectModule,
+  MatButtonToggleModule,
+  MatIconModule,
+  MatNativeDateModule,
+  MatDatepickerModule,
+  MatSlideToggleModule,
+  MatCheckboxModule,
+  MatTableModule,
+  MatSortModule} from "@angular/material";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -42,6 +54,7 @@ import { ModifierModuleComponent } from './modules/modifier-module/modifier-modu
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
 
     MatInputModule,
     MatCardModule,
@@ -50,7 +63,19 @@ import { ModifierModuleComponent } from './modules/modifier-module/modifier-modu
     MatExpansionModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
-    BrowserAnimationsModule
+    MatRippleModule,
+    MatFormFieldModule,
+    MatTooltipModule,
+    MatSelectModule,
+    MatButtonToggleModule,
+    MatIconModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatSlideToggleModule,
+    MatCheckboxModule,
+    MatTableModule,
+    MatSortModule,
+    ReactiveFormsModule
 
   ],
   providers: [],

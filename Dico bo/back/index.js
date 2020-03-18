@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose') ;
 const bodyParser = require('body-parser');
+const path = require("path");
 
 const moduleRoutes = require('./routes/module') ;
 const lessonRoutes = require('./routes/lesson') ;
@@ -28,9 +29,10 @@ app.use((req, res, next) => {
 app.use('/modules' , moduleRoutes);
 app.use('/lessons' , lessonRoutes);
 app.use('/mots' , motRoutes);
-app.use('/users' , userRoutes)
+app.use('/users' , userRoutes);
 
 
+app.use("/images", express.static(path.join("images")));
 
 
 

@@ -6,6 +6,10 @@ const moduleSchema = new Schema ({
         type :String ,
         required : true
     } ,
+    image : {
+        type :String ,
+        required : true
+    },
     lessons : [{
         type :Schema.Types.ObjectId,
         ref : 'lesson'

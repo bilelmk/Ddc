@@ -1,10 +1,36 @@
 const express = require('express') ;
 const router = express.Router() ;
-const Module = require('../models/module')
+const Module = require('../models/module');
+const multer = require('multer') ;
 
+
+const MIME_TYPE_MAP = {
+    "image/png": "png",
+    "image/jpeg": "jpg",
+    "image/jpg": "jpg"
+};
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        const isValid = MIME_TYPE_MAP[file.mimetype];
+        let error = new Error("Invalid mime type");
+        if (isValid) {
+            error = null;
+        }
+        cb(error, "images");
+    },
+    filename: (req, file, cb) => {
+        const name = file.originalname
+            .toLowerCase()
+            .split(" ")
+            .join("-");
+        const ext = MIME_TYPE_MAP[file.mimetype];
+        cb(null, name + "-" + Date.now() + "." + ext);
+    }
+});
 
 router.route('/')
-    .get((req, res, next) => {
+    .get( (req, res, next) => {
         Module.find()
             .then(modules => {
                 res.statusCode = 200;
@@ -14,11 +40,14 @@ router.route('/')
             .catch((err) => next(err));
     })
 
-    .post((req, res, next) => {
-        var  module = new Module(req.body) ;
+    .post(multer({ storage: storage }).single("image"), (req, res, next) => {
+        const url = req.protocol + "://" + req.get("host");
+        var  module = new Module({
+            module_name : req.body.module_name ,
+            image: url + "/images/" + req.file.filename ,
+        }) ;
         module.save()
             .then((module) => {
-                console.log('Module Created ', module);
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
                 res.json(module);

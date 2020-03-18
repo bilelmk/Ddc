@@ -1,1 +1,17 @@
-<p>ajouter-module works!</p>
+<form [formGroup]="form" (ngSubmit)="onSaveModule()">
+  <mat-form-field >
+    <input formControlName="module_name" matInput type="text" name="module_name" placeholder="Nom du Module">
+  </mat-form-field>
+
+  <div>
+    <button mat-raised-button type="button" (click)="filePicker.click()">Upload Image</button>
+    <input type="file" #filePicker (change)="onPickImage($event)">
+  </div>
+
+  <div   *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid">
+    <img class="image-preview"  [src]="imagePreview" [alt]="form.value.title">
+  </div>
+
+
+  <button mat-button type="submit" [disabled]="!form.valid">Save</button>
+</form>
