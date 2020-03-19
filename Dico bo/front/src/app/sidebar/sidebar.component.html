@@ -1,0 +1,19 @@
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side" opened>
+    <p>Auto-resizing sidenav</p>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <app-header>
+      <button mat-icon-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+    </app-header>
+    <div>
+
+    </div>
+    <ng-content></ng-content>
+  </div>
+
+</mat-drawer-container>

@@ -3,6 +3,7 @@ import { Module} from '../shared/clasees/module';
 import { ModulesService} from '../shared/services/modules.service';
 import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {AjouterModuleComponent} from './ajouter-module/ajouter-module.component';
+import {SupprimerModuleComponent} from './supprimer-module/supprimer-module.component';
 
 @Component({
   selector: 'app-modules',
@@ -49,5 +50,13 @@ export class ModulesComponent  implements OnInit {
       width: '800px'
     });
   }
+
+  openDeleteDialog(id : string): void {
+    const dialogRef = this.dialog.open( SupprimerModuleComponent, {
+      width: '800px' , data : id
+    });
+  }
+
+
 
 }

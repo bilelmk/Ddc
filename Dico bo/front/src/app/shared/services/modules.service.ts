@@ -4,8 +4,6 @@ import { Observable } from 'rxjs';
 import { Module } from '../clasees/module';
 import { baseURL } from '../baseurl'
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -25,8 +23,8 @@ export class ModulesService {
   //   return this.http.patch(baseURL + 'modules' + id ,adresse)
   // }
 
-  // deleteModule( id : number) {
-  //   return this.http.delete(baseURL + 'modules' + id)
-  // }
+  deleteModule( id : string) {
+    return this.http.delete(baseURL + 'modules/' + id)
+  }
 
 }

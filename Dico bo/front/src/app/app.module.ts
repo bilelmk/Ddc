@@ -4,7 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatInputModule,
+import {
+  MatInputModule,
   MatCardModule,
   MatButtonModule,
   MatToolbarModule,
@@ -22,7 +23,8 @@ import { MatInputModule,
   MatSlideToggleModule,
   MatCheckboxModule,
   MatTableModule,
-  MatSortModule} from "@angular/material";
+  MatSortModule, MatSidenavModule
+} from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,6 +37,14 @@ import { MotsComponent } from './mots/mots.component';
 import { AjouterModuleComponent } from './modules/ajouter-module/ajouter-module.component';
 import { SupprimerModuleComponent } from './modules/supprimer-module/supprimer-module.component';
 import { ModifierModuleComponent } from './modules/modifier-module/modifier-module.component';
+import { AjouterMotComponent } from './mots/ajouter-mot/ajouter-mot.component';
+import { SupprimerMotComponent } from './mots/supprimer-mot/supprimer-mot.component';
+import { ModifierMotComponent } from './mots/modifier-mot/modifier-mot.component';
+import { ModifierLessonComponent } from './lessons/modifier-lesson/modifier-lesson.component';
+import { AjouterLessonComponent } from './lessons/ajouter-lesson/ajouter-lesson.component';
+import { SupprimerLessonComponent } from './supprimer-lesson/supprimer-lesson.component';
+import { HeaderComponent } from './header/header.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +56,15 @@ import { ModifierModuleComponent } from './modules/modifier-module/modifier-modu
     MotsComponent,
     AjouterModuleComponent,
     SupprimerModuleComponent,
-    ModifierModuleComponent
+    ModifierModuleComponent,
+    AjouterMotComponent,
+    SupprimerMotComponent,
+    ModifierMotComponent,
+    ModifierLessonComponent,
+    AjouterLessonComponent,
+    SupprimerLessonComponent,
+    HeaderComponent,
+    SidebarComponent
 
   ],
   imports: [
@@ -75,7 +93,8 @@ import { ModifierModuleComponent } from './modules/modifier-module/modifier-modu
     MatCheckboxModule,
     MatTableModule,
     MatSortModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSidenavModule
 
   ],
   providers: [],
@@ -86,4 +105,5 @@ import { ModifierModuleComponent } from './modules/modifier-module/modifier-modu
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

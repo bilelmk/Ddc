@@ -14,10 +14,6 @@ const motSchema = new Schema ({
         type :String ,
         required : true
     },
-    audio : {
-        type :String ,
-        required : true
-    },
 }, {
     timestamps: true
 });

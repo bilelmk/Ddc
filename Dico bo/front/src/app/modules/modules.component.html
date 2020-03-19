@@ -45,7 +45,8 @@
               type="button"
               matTooltip="Supprimer"
               [matTooltipPosition]="'above'"
-              class="btn btn-danger btn-link btn-sm btn-just-icon">
+              class="btn btn-danger btn-link btn-sm btn-just-icon"
+              (click)="openDeleteDialog(element._id)">
         <i class="material-icons">
           close
         </i>
