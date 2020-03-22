@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ModulesService } from '../../shared/services/modules.service';
 import { mimeType } from '../../shared/mime-type.validator';
+import { MotsService } from '../../shared/services/mots.service';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { NotificationService } from '../../shared/services/notification.service';
 
 @Component({
   selector: 'app-ajouter-mot',
@@ -10,35 +12,37 @@ import { mimeType } from '../../shared/mime-type.validator';
 })
 export class AjouterMotComponent implements OnInit {
 
-
   form : FormGroup ;
   imagePreview: string;
 
-
-  constructor(private moduleService : ModulesService) { }
+  constructor(private motsService : MotsService , private notificationService : NotificationService,
+              public dialogRef: MatDialogRef<AjouterMotComponent>) { }
 
   ngOnInit() {
     this.form = new FormGroup({
-      'module_name' : new FormControl(null ,
+      'name' : new FormControl(null ,
+        {validators : [Validators.required , Validators.minLength(3)]} ),
+      'explication' : new FormControl(null ,
         {validators : [Validators.required , Validators.minLength(3)]} ),
       'image' : new FormControl(null ,
         {validators : [Validators.required ] ,asyncValidators : [mimeType] } )})
   }
 
-  onSaveModule(){
+  onSaveMot(){
     if (this.form.invalid) {
       return;
     }
     const postData = new FormData();
-    postData.append("module_name", this.form.value.module_name);
-    postData.append("image", this.form.value.image, this.form.value.module_name);
-
-    this.moduleService.postModule(postData).subscribe(
+    postData.append("name", this.form.value.name);
+    postData.append("explication", this.form.value.explication);
+    postData.append("image", this.form.value.image, this.form.value.name);
+    this.motsService.postMot(postData).subscribe(
       res => {
-        console.log(res)
+        this.notificationService.openSnackBar('Mot ajouté avec succés' , 'green-snackbar');
+        this.dialogRef.close(res)
       },
       err => {
-        console.log(err)
+        this.notificationService.openSnackBar('Erreur lors de l\'ajout de mot' , 'red-snackbar')
       }
     )
   }
@@ -53,4 +57,5 @@ export class AjouterMotComponent implements OnInit {
     };
     reader.readAsDataURL(file);
   }
+
 }

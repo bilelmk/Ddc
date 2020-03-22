@@ -19,9 +19,9 @@ export class MotsService {
     return this.http.post(baseURL + 'mots', mot) ;
   }
 
-  // putModule(adresse : Module , id :number){
-  //   return this.http.patch(baseURL + 'modules' + id ,adresse)
-  // }
+  putMot(mot : any , id : string){
+    return this.http.put(baseURL + 'mots/' + id , mot)
+  }
 
   deleteMot( id : string) {
     return this.http.delete(baseURL + 'mots/' + id)

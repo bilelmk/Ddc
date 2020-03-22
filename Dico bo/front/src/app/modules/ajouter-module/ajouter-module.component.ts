@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { mimeType } from '../../shared/mime-type.validator';
-import { MotsService } from '../../shared/services/mots.service';
+import { ModulesService } from '../../shared/services/modules.service';
+import {NotificationService} from '../../shared/services/notification.service';
+import {MatDialogRef} from '@angular/material';
 
 @Component({
   selector: 'app-ajouter-module',
@@ -14,13 +16,12 @@ export class AjouterModuleComponent implements OnInit {
   form : FormGroup ;
   imagePreview: string;
 
-  constructor(private motsService : MotsService) { }
+  constructor(private modulesService : ModulesService, private notificationService : NotificationService,
+              public dialogRef: MatDialogRef<AjouterModuleComponent>) { }
 
   ngOnInit() {
     this.form = new FormGroup({
-      'name' : new FormControl(null ,
-                        {validators : [Validators.required , Validators.minLength(3)]} ),
-      'explication' : new FormControl(null ,
+      'module_name' : new FormControl(null ,
         {validators : [Validators.required , Validators.minLength(3)]} ),
       'image' : new FormControl(null ,
         {validators : [Validators.required ] ,asyncValidators : [mimeType] } )})
@@ -31,16 +32,16 @@ export class AjouterModuleComponent implements OnInit {
       return;
     }
     const postData = new FormData();
-    postData.append("name", this.form.value.name);
-    postData.append("explication", this.form.value.explication);
-    postData.append("image", this.form.value.image, this.form.value.name);
+    postData.append("module_name", this.form.value.module_name);
+    postData.append("image", this.form.value.image, this.form.value.module_name);
 
-    this.motsService.postMot(postData).subscribe(
+    this.modulesService.postModule(postData).subscribe(
       res => {
-        console.log(res)
+        this.notificationService.openSnackBar('Module ajouté avec succés' , 'green-snackbar');
+        this.dialogRef.close(res)
       },
       err => {
-        console.log(err)
+        this.notificationService.openSnackBar('Erreur lors de l\'ajout de module' , 'red-snackbar')
       }
     )
   }

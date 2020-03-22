@@ -19,9 +19,9 @@ export class ModulesService {
     return this.http.post(baseURL + 'modules', module) ;
   }
 
-  // putModule(adresse : Module , id :number){
-  //   return this.http.patch(baseURL + 'modules' + id ,adresse)
-  // }
+  putModule(module : any , id :string){
+    return this.http.put(baseURL + 'modules/' + id , module)
+  }
 
   deleteModule( id : string) {
     return this.http.delete(baseURL + 'modules/' + id)

@@ -46,6 +46,7 @@ router.route('/')
             module_name : req.body.module_name ,
             image: url + "/images/" + req.file.filename ,
         }) ;
+
         module.save()
             .then((module) => {
                 res.statusCode = 200;
@@ -61,42 +62,43 @@ router.route('/')
     })
 
     .delete((req, res, next) => {
-        Module.remove({})
-            .then((resp) => {
-                res.statusCode = 200;
-                res.setHeader('Content-Type', 'application/json');
-                res.json(resp);
-            }, (err) => next(err))
-            .catch((err) => next(err));
+        res.statusCode = 403;
+        res.end('DELETE operation not supported on /modules');
     });
 
 
 router.route('/:Id')
-    // .get(cors.cors,(req,res,next) => {
-    //     Dishes.findById(req.params.dishId)
-    //         .populate('comments.author')
-    //         .then((dish) => {
-    //             res.statusCode = 200;
-    //             res.setHeader('Content-Type', 'application/json');
-    //             res.json(dish);
-    //         }, (err) => next(err))
-    //         .catch((err) => next(err));
-    // })
+    .get((req,res,next) => {
+        res.statusCode = 403;
+        res.end('GET operation not supported on /modules/'+ req.params.Id);
+    })
+
     .post((req, res, next) => {
         res.statusCode = 403;
         res.end('POST operation not supported on /modules/'+ req.params.Id);
     })
-    // .put(cors.corsWithOptions,authenticate.verifyUser,authenticate.verifyAdmin,(req, res, next) => {
-    //     Dishes.findByIdAndUpdate(req.params.dishId, {
-    //         $set: req.body
-    //     }, { new: true })
-    //         .then((dish) => {
-    //             res.statusCode = 200;
-    //             res.setHeader('Content-Type', 'application/json');
-    //             res.json(dish);
-    //         }, (err) => next(err))
-    //         .catch((err) => next(err));
-    // })
+
+    .put(multer({ storage: storage }).single("image") ,(req, res, next) => {
+        let imagePath = req.body.image ;
+        if(req.file){
+            const url = req.protocol + "://" + req.get("host");
+            imagePath = url + "/images/" + req.file.filename ;
+        }
+        var  module = new Module({
+            _id : req.body._id,
+            module_name : req.body.module_name ,
+            image: imagePath ,
+        }) ;
+        console.log(module)
+        Module.findByIdAndUpdate(req.params.Id, {$set: module}, { new: true })
+            .then((module) => {
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(module);
+            }, (err) => next(err))
+            .catch((err) => next(err));
+    })
+
     .delete((req, res, next) => {
         Module.findByIdAndRemove(req.params.Id)
             .then((resp) => {

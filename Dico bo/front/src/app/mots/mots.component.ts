@@ -2,8 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { MotsService } from '../shared/services/mots.service';
 import { Mot } from '../shared/clasees/mot';
-import {AjouterMotComponent} from './ajouter-mot/ajouter-mot.component';
-import {SupprimerMotComponent} from './supprimer-mot/supprimer-mot.component';
+import { AjouterMotComponent } from './ajouter-mot/ajouter-mot.component';
+import { SupprimerMotComponent } from './supprimer-mot/supprimer-mot.component';
+import { ModifierMotComponent } from './modifier-mot/modifier-mot.component';
 
 @Component({
   selector: 'app-mots',
@@ -13,7 +14,6 @@ import {SupprimerMotComponent} from './supprimer-mot/supprimer-mot.component';
 export class MotsComponent implements OnInit {
 
   @ViewChild(MatPaginator , null) paginator: MatPaginator ;
-  @ViewChild(MatSort , null) sort: MatSort;
 
   mots : Mot[] = null ;
   displayedColumns: string[] = [ 'nom' , 'explication' ,'image' , 'action'];
@@ -21,39 +21,75 @@ export class MotsComponent implements OnInit {
 
   constructor(private motsSerice : MotsService ,  public dialog : MatDialog) { }
 
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
+  // applyFilter(filterValue: string) {
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+  //
+  //   if (this.dataSource.paginator) {
+  //     this.dataSource.paginator.firstPage();
+  //   }
+  // }
 
 
   ngOnInit() {
     this.motsSerice.getMots().subscribe(
       (response) => {
-        console.log(response);
         this.mots = response ;
         this.dataSource =  new MatTableDataSource(this.mots);
         this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
       },
       (error) => console.log('error')
     )
   }
 
-
   openAddDialog(): void {
     const dialogRef = this.dialog.open( AjouterMotComponent, {
-      width: '800px'
+      width: '800px' , height :'500px' , panelClass: 'custom-dialog-container'
     });
+    dialogRef.afterClosed().subscribe(
+      res => {
+        if (res){
+          let mot : Mot = res ;
+          this.mots.push(mot);
+          this.dataSource =  new MatTableDataSource(this.mots);
+          this.dataSource.paginator = this.paginator;
+        }
+      })
   }
 
   openDeleteDialog(id : string): void {
     const dialogRef = this.dialog.open( SupprimerMotComponent, {
-      width: '800px' , data : id
+      width: '800px' , data : id , panelClass: 'custom-dialog-container'
     });
+    dialogRef.afterClosed().subscribe(
+      res => {
+        if (res){
+          this.mots.splice(this.mots.findIndex(mot => {
+            return mot._id == res
+          }) , 1);
+          this.dataSource =  new MatTableDataSource(this.mots);
+          this.dataSource.paginator = this.paginator;
+        }
+      })
+  }
+
+  openEditDialog(mot : Mot){
+    const dialogRef = this.dialog.open( ModifierMotComponent, {
+      width: '800px' , height :'800px' ,  data : mot , panelClass: 'custom-dialog-container'
+    });
+    dialogRef.afterClosed().subscribe(
+      res => {
+        if (res){
+          this.mots.map(mot => {
+            if(mot._id == res._id){
+              mot.name = res.name ;
+              mot.explication = res.explication;
+              mot.image = res.image
+            }
+          });
+          this.dataSource =  new MatTableDataSource(this.mots);
+          this.dataSource.paginator = this.paginator;
+        }
+      })
   }
 
 }

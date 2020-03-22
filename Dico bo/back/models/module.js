@@ -9,11 +9,7 @@ const moduleSchema = new Schema ({
     image : {
         type :String ,
         required : true
-    },
-    lessons : [{
-        type :Schema.Types.ObjectId,
-        ref : 'lesson'
-    }]
+    }
 }, {
     timestamps: true
 });
