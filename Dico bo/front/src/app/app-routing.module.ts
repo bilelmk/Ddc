@@ -31,7 +31,7 @@ const routes: Routes = [
         component: ModulesComponent
       },
       {
-        path: 'lessons',
+        path: 'modules/:id',
         component: LessonsComponent
       },
       {

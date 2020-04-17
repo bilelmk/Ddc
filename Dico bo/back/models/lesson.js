@@ -5,15 +5,19 @@ const lessonSchema = new Schema ({
     lesson_name : {
         type :String ,
         required : true
-    } ,
-    mots : [{
-        type :Schema.Types.ObjectId,
-        ref : 'mot'
-    }]
+    },
+    image : {
+        type :String ,
+        required : true
+    },
+    module : {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'module',
+        required : true
+    },
+
 }, {
     timestamps: true
 });
-
-
 
 module.exports = mongoose.model('lesson' , lessonSchema) ;

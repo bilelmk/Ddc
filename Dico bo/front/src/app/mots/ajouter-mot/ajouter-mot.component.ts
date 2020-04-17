@@ -25,7 +25,8 @@ export class AjouterMotComponent implements OnInit {
       'explication' : new FormControl(null ,
         {validators : [Validators.required , Validators.minLength(3)]} ),
       'image' : new FormControl(null ,
-        {validators : [Validators.required ] ,asyncValidators : [mimeType] } )})
+        {validators : [Validators.required ] ,asyncValidators : [mimeType] } )}
+        )
   }
 
   onSaveMot(){

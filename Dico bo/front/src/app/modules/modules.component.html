@@ -1,5 +1,4 @@
 
-<!--<bu-->
 <h4>Ajouter <button mat-button (click)="openAddDialog()">Ajouter</button></h4>
 <table  mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-hover table" matSort>
 
@@ -18,15 +17,26 @@
   <ng-container matColumnDef="action" >
     <th class="text-center title" mat-header-cell *matHeaderCellDef > Action </th>
     <td class="text-center" mat-cell *matCellDef="let element">
-<!--      <button mat-raised-button-->
-<!--              type="button"-->
-<!--              matTooltip="Détails"-->
-<!--              [matTooltipPosition]="'above'"-->
-<!--              class="btn btn-primary  btn-link btn-just-icon">-->
-<!--        <i class="material-icons icon-blue" >-->
-<!--          subject-->
-<!--        </i>-->
-<!--      </button>-->
+      <button mat-raised-button
+              type="button"
+              matTooltip="Liste des lessons"
+              [matTooltipPosition]="'above'"
+              class="btn btn-primary  btn-link btn-just-icon"
+              [routerLink]="['./',element._id]">
+        <i class="material-icons icon-blue" >
+          list
+        </i>
+      </button>
+      <button mat-raised-button
+              type="button"
+              matTooltip="Ajouter un lesson"
+              [matTooltipPosition]="'above'"
+              class="btn btn-primary  btn-link btn-just-icon"
+              (click)="openAddLessonDialog(element._id)">
+        <i class="material-icons icon-blue" >
+          add
+        </i>
+      </button>
       <button mat-raised-button
               type="button"
               matTooltip="Modifier"

@@ -1,14 +1,9 @@
 const express = require('express') ;
-const router = express.Router() ;
 const Module = require('../models/module');
 const multer = require('multer') ;
+const MIME_TYPE_MAP = require('../middleware/mime-type') ;
 
-
-const MIME_TYPE_MAP = {
-    "image/png": "png",
-    "image/jpeg": "jpg",
-    "image/jpg": "jpg"
-};
+const router = express.Router() ;
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -28,6 +23,8 @@ const storage = multer.diskStorage({
         cb(null, name + "-" + Date.now() + "." + ext);
     }
 });
+
+
 
 router.route('/')
     .get( (req, res, next) => {
@@ -89,7 +86,6 @@ router.route('/:Id')
             module_name : req.body.module_name ,
             image: imagePath ,
         }) ;
-        console.log(module)
         Module.findByIdAndUpdate(req.params.Id, {$set: module}, { new: true })
             .then((module) => {
                 res.statusCode = 200;

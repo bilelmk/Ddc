@@ -6,6 +6,7 @@ import { AjouterModuleComponent } from './ajouter-module/ajouter-module.componen
 import { SupprimerModuleComponent } from './supprimer-module/supprimer-module.component';
 import { NotificationService } from '../shared/services/notification.service';
 import { ModifierModuleComponent } from './modifier-module/modifier-module.component';
+import {AjouterLessonComponent} from './ajouter-lesson/ajouter-lesson.component';
 
 @Component({
   selector: 'app-modules',
@@ -15,7 +16,6 @@ import { ModifierModuleComponent } from './modifier-module/modifier-module.compo
 export class ModulesComponent  implements OnInit {
 
   @ViewChild(MatPaginator , null) paginator: MatPaginator ;
-
   modules : Module[] = null ;
   displayedColumns: string[] = [ 'nom' , 'image' ,'action' ];
   dataSource: MatTableDataSource<Module>;
@@ -93,6 +93,13 @@ export class ModulesComponent  implements OnInit {
           this.dataSource.paginator = this.paginator;
         }
       })
+  }
+
+  openAddLessonDialog(id : string ){
+    console.log(id)
+    const dialogRef = this.dialog.open( AjouterLessonComponent , {
+      width: '800px' , height :'800px' ,  data : id , panelClass: 'custom-dialog-container'
+    });
   }
 
 

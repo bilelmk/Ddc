@@ -26,7 +26,7 @@ import {
   MatTableModule,
   MatSortModule,
   MatSidenavModule,
-  MatSnackBarModule, MatDialogModule
+  MatSnackBarModule, MatDialogModule, MatAutocompleteModule
 } from '@angular/material';
 
 
@@ -43,7 +43,7 @@ import { AjouterMotComponent } from './mots/ajouter-mot/ajouter-mot.component';
 import { SupprimerMotComponent } from './mots/supprimer-mot/supprimer-mot.component';
 import { ModifierMotComponent } from './mots/modifier-mot/modifier-mot.component';
 import { ModifierLessonComponent } from './lessons/modifier-lesson/modifier-lesson.component';
-import { AjouterLessonComponent } from './lessons/ajouter-lesson/ajouter-lesson.component';
+import { AjouterLessonComponent } from './modules/ajouter-lesson/ajouter-lesson.component';
 import { SupprimerLessonComponent } from './lessons/supprimer-lesson/supprimer-lesson.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -97,7 +97,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     ReactiveFormsModule,
     MatSidenavModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatAutocompleteModule
 
   ],
   providers: [],

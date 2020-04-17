@@ -1,7 +1,7 @@
-import { Mot } from './mot';
+import { Module } from './module';
 
 export interface Lesson {
   _id : string
   lesson_name : string ;
-  mots : Mot[]
+  module : Module
 }
