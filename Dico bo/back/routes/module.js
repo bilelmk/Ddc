@@ -1,8 +1,7 @@
 const express = require('express') ;
 const Module = require('../models/module');
-const multer = require('multer') ;
 const MIME_TYPE_MAP = require('../middleware/mime-type') ;
-
+const multer = require('multer') ;
 const router = express.Router() ;
 
 const storage = multer.diskStorage({

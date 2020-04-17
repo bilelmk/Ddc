@@ -1,14 +1,8 @@
 const express = require('express') ;
-const router = express.Router() ;
 const Mot = require('../models/mot')
+const MIME_TYPE_MAP = require('../middleware/mime-type') ;
 const multer = require('multer') ;
-
-
-const MIME_TYPE_MAP = {
-    "image/png": "png",
-    "image/jpeg": "jpg",
-    "image/jpg": "jpg"
-};
+const router = express.Router() ;
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -31,13 +25,8 @@ const storage = multer.diskStorage({
 
 router.route('/')
     .get((req, res, next) => {
-        Mot.find()
-            .then(mots => {
-                res.statusCode = 200;
-                res.setHeader('Content-Type', 'application/json');
-                res.json(mots);
-            }, (err) => next(err))
-            .catch((err) => next(err));
+        res.statusCode = 403;
+        res.end('GET operation not supported on /mots');
     })
 
     .post(multer({ storage: storage }).single("image"),(req, res, next) => {
@@ -46,6 +35,7 @@ router.route('/')
             name : req.body.name ,
             explication : req.body.explication ,
             image: url + "/images/" + req.file.filename ,
+            lesson: req.body.lesson
         }) ;
         mot.save()
             .then((mot) => {
@@ -66,15 +56,23 @@ router.route('/')
         res.end('DELETE operation not supported on /mots');
     });
 
+
 router.route('/:Id')
-    .get((req,res,next) => {
-        res.statusCode = 403;
-        res.end('GET operation not supported on /mots/' + req.params.Id);
+    // Find Mots by lesson id ( id = module_id )
+    .get((req, res, next) => {
+        Mot.find({lesson : req.params.Id })
+            .populate('lesson')
+            .then(lessons => {
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(lessons);
+            }, (err) => next(err))
+            .catch((err) => next(err));
     })
 
     .post((req, res, next) => {
         res.statusCode = 403;
-        res.end('POST operation not supported on /services/'+ req.params.Id);
+        res.end('POST operation not supported on /mots/'+ req.params.Id);
     })
 
     .put(multer({ storage: storage }).single("image") ,(req, res, next) => {
@@ -88,6 +86,7 @@ router.route('/:Id')
             name : req.body.name ,
             explication : req.body.explication ,
             image: imagePath ,
+            lesson: req.body.lesson
         }) ;
         Mot.findByIdAndUpdate(req.params.Id,{$set: mot} ,{new : true})
             .then((mot) => {

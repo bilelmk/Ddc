@@ -2,7 +2,6 @@ const express = require('express') ;
 const Lesson = require('../models/lesson') ;
 const MIME_TYPE_MAP = require('../middleware/mime-type') ;
 const multer = require('multer') ;
-
 const router = express.Router() ;
 
 const storage = multer.diskStorage({
@@ -33,18 +32,14 @@ router.route('/')
     })
 
     .post(multer({ storage: storage }).single("image") ,(req, res, next) => {
-
         const url = req.protocol + "://" + req.get("host");
-
         var  lesson = new Lesson({
             lesson_name : req.body.lesson_name ,
             image: url + "/images/" + req.file.filename ,
             module : req.body.module
         }) ;
-
         lesson.save()
             .then((lesson) => {
-                console.log('Lesson Created ', lesson);
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
                 res.json(lesson);
@@ -73,6 +68,7 @@ router.route('/:Id')
     // Find lessons by module id ( id = module_id )
     .get((req, res, next) => {
         Lesson.find({module : req.params.Id })
+            .populate('module')
             .then(lessons => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
@@ -95,8 +91,9 @@ router.route('/:Id')
         }
 
         var  lesson = new Lesson({
+            _id : req.body._id,
             lesson_name : req.body.lesson_name ,
-            image: url + "/images/" + req.file.filename ,
+            image: imagePath ,
             module : req.body.module
         }) ;
 

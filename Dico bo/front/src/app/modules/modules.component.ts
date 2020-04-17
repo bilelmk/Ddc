@@ -96,7 +96,6 @@ export class ModulesComponent  implements OnInit {
   }
 
   openAddLessonDialog(id : string ){
-    console.log(id)
     const dialogRef = this.dialog.open( AjouterLessonComponent , {
       width: '800px' , height :'800px' ,  data : id , panelClass: 'custom-dialog-container'
     });

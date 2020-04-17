@@ -11,8 +11,8 @@ export class MotsService {
 
   constructor(private http:HttpClient) { }
 
-  getMots() : Observable<Mot[]>{
-    return this.http.get<Mot[]>(baseURL + 'mots') ;
+  getMotsByLessonId(id : string) : Observable<Mot[]>{
+    return this.http.get<Mot[]>(baseURL + 'mots/' + id ) ;
   }
 
   postMot(mot: any) {

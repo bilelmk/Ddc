@@ -1,5 +1,3 @@
-<!--<bu-->
-<h4>Ajouter <button mat-button (click)="openAddDialog()">Ajouter</button></h4>
 <table  mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-hover table" matSort>
 
   <ng-container matColumnDef="explication">
@@ -28,8 +26,7 @@
               matTooltip="Modifier"
               [matTooltipPosition]="'above'"
               class="btn btn-primary btn-link btn btn-just-icon"
-              (click)="openEditDialog(element)"
-      >
+              (click)="openEditDialog(element)">
         <i class="material-icons icon-blue">
           edit
         </i>

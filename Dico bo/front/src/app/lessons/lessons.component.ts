@@ -1,10 +1,12 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LessonsService } from '../shared/services/lessons.service';
 import { MatDialog, MatPaginator, MatTableDataSource } from '@angular/material';
 import { Lesson } from '../shared/clasees/lesson';
 import { NotificationService } from '../shared/services/notification.service';
 import { SupprimerLessonComponent } from './supprimer-lesson/supprimer-lesson.component';
+import { ModifierLessonComponent } from './modifier-lesson/modifier-lesson.component';
+import { AjouterMotComponent } from './ajouter-mot/ajouter-mot.component';
 
 @Component({
   selector: 'app-lessons',
@@ -39,11 +41,28 @@ export class LessonsComponent implements OnInit {
 
 
   openAddMotDialog(id: string) {
-
+    const dialogRef = this.dialog.open( AjouterMotComponent , {
+      width: '800px' , data : id , panelClass: 'custom-dialog-container'
+    });
   }
 
-  openEditDialog(element: any) {
-
+  openEditDialog(lesson: Lesson) {
+    const dialogRef = this.dialog.open( ModifierLessonComponent , {
+      width: '800px' , data : lesson , panelClass: 'custom-dialog-container'
+    });
+    dialogRef.afterClosed().subscribe(
+      res => {
+        if (res){
+          this.lessons.map(lesson => {
+            if(lesson._id == res._id){
+              lesson.lesson_name = res.lesson_name ;
+              lesson.image = res.image
+            }
+          });
+          this.dataSource =  new MatTableDataSource(this.lessons);
+          this.dataSource.paginator = this.paginator;
+        }
+      })
   }
 
   openDeleteDialog(id: string) {

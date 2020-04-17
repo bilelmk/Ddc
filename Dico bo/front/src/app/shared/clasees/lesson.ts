@@ -1,7 +1,9 @@
 import { Module } from './module';
 
 export interface Lesson {
-  _id : string
+  _id : string ;
   lesson_name : string ;
-  module : Module
+  image : any ;
+  module : Module ;
+
 }

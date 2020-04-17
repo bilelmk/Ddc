@@ -1,10 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MotsService } from '../../shared/services/mots.service';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { mimeType } from '../../shared/mime-type.validator';
 import { NotificationService } from '../../shared/services/notification.service';
-import {Mot} from '../../shared/clasees/mot';
+import { Mot } from '../../shared/clasees/mot';
 
 @Component({
   selector: 'app-modifier-mot',
@@ -21,7 +21,6 @@ export class ModifierMotComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log(this.data)
     this.form = new FormGroup({
       'name' : new FormControl(this.data.name ,
         {validators : [Validators.required , Validators.minLength(3)]} ),
@@ -42,13 +41,15 @@ export class ModifierMotComponent implements OnInit {
       postData.append("name", this.form.value.name);
       postData.append("explication", this.form.value.explication);
       postData.append("image", this.form.value.image, this.form.value.name);
+      postData.append("lesson" , this.data.lesson._id )
     }
     else{
       postData = {
         _id : this.data._id,
         name : this.form.value.name ,
         explication : this.form.value.explication,
-        image : this.form.value.image
+        image : this.form.value.image,
+        lesson : this.data.lesson._id
       }
     }
     this.motsService.putMot(postData , this.data._id).subscribe(

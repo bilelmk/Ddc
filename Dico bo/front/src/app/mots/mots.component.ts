@@ -2,9 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { MotsService } from '../shared/services/mots.service';
 import { Mot } from '../shared/clasees/mot';
-import { AjouterMotComponent } from './ajouter-mot/ajouter-mot.component';
 import { SupprimerMotComponent } from './supprimer-mot/supprimer-mot.component';
 import { ModifierMotComponent } from './modifier-mot/modifier-mot.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-mots',
@@ -19,7 +19,7 @@ export class MotsComponent implements OnInit {
   displayedColumns: string[] = [ 'nom' , 'explication' ,'image' , 'action'];
   dataSource: MatTableDataSource<Mot>;
 
-  constructor(private motsSerice : MotsService ,  public dialog : MatDialog) { }
+  constructor(private motsSerice : MotsService ,  public dialog : MatDialog , private route : ActivatedRoute) { }
 
   // applyFilter(filterValue: string) {
   //   this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -31,30 +31,20 @@ export class MotsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.motsSerice.getMots().subscribe(
-      (response) => {
-        this.mots = response ;
-        this.dataSource =  new MatTableDataSource(this.mots);
-        this.dataSource.paginator = this.paginator;
-      },
-      (error) => console.log('error')
-    )
-  }
-
-  openAddDialog(): void {
-    const dialogRef = this.dialog.open( AjouterMotComponent, {
-      width: '800px' , height :'500px' , panelClass: 'custom-dialog-container'
-    });
-    dialogRef.afterClosed().subscribe(
+    this.route.params.subscribe(
       res => {
-        if (res){
-          let mot : Mot = res ;
-          this.mots.push(mot);
-          this.dataSource =  new MatTableDataSource(this.mots);
-          this.dataSource.paginator = this.paginator;
-        }
+          this.motsSerice.getMotsByLessonId(res.id).subscribe(
+            (response) => {
+              console.log(response)
+              this.mots = response ;
+              this.dataSource =  new MatTableDataSource(this.mots);
+              this.dataSource.paginator = this.paginator;
+            },
+            (error) => console.log('error')
+          )
       })
   }
+
 
   openDeleteDialog(id : string): void {
     const dialogRef = this.dialog.open( SupprimerMotComponent, {
@@ -71,6 +61,7 @@ export class MotsComponent implements OnInit {
         }
       })
   }
+
 
   openEditDialog(mot : Mot){
     const dialogRef = this.dialog.open( ModifierMotComponent, {
@@ -91,5 +82,6 @@ export class MotsComponent implements OnInit {
         }
       })
   }
+
 
 }

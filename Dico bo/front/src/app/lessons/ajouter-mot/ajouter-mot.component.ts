@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { mimeType } from '../../shared/mime-type.validator';
 import { MotsService } from '../../shared/services/mots.service';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
 import { NotificationService } from '../../shared/services/notification.service';
 
 @Component({
@@ -16,7 +16,8 @@ export class AjouterMotComponent implements OnInit {
   imagePreview: string;
 
   constructor(private motsService : MotsService , private notificationService : NotificationService,
-              public dialogRef: MatDialogRef<AjouterMotComponent>) { }
+              public dialogRef: MatDialogRef<AjouterMotComponent> , @Inject(MAT_DIALOG_DATA) public data: string ) { }
+
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -37,6 +38,7 @@ export class AjouterMotComponent implements OnInit {
     postData.append("name", this.form.value.name);
     postData.append("explication", this.form.value.explication);
     postData.append("image", this.form.value.image, this.form.value.name);
+    postData.append("lesson" , this.data)
     this.motsService.postMot(postData).subscribe(
       res => {
         this.notificationService.openSnackBar('Mot ajouté avec succés' , 'green-snackbar');

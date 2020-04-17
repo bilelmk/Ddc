@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { ModulesService } from '../../shared/services/modules.service';
-import {NotificationService} from '../../shared/services/notification.service';
-import {Mot} from '../../shared/clasees/mot';
+import { NotificationService } from '../../shared/services/notification.service';
+import { Module } from '../../shared/clasees/module';
 
 @Component({
   selector: 'app-supprimer-module',
@@ -22,7 +22,7 @@ export class SupprimerModuleComponent implements OnInit {
     this.modulesService.deleteModule(this.data).subscribe(
       res => {
         this.notificationService.openSnackBar('Module supprimé avec succés' , 'green-snackbar');
-        this.dialogRef.close( (res as Mot)._id )
+        this.dialogRef.close( (res as Module)._id )
       },
       err => {
         this.notificationService.openSnackBar('Erreur lors de la suppression de module' , 'red-snackbar')

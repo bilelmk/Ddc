@@ -19,11 +19,11 @@ export class LessonsService {
     return this.http.post(baseURL + 'lessons', lesson) ;
   }
 
-  // putLesson(lesson : any , id :string){
-  //   return this.http.put(baseURL + 'lessons/' + id , lesson)
-  // }
-  //
-  // deleteLesson( id : string) {
-  //   return this.http.delete(baseURL + 'lessons/' + id)
-  // }
+  putLesson(lesson : any , id :string){
+    return this.http.put(baseURL + 'lessons/' + id , lesson)
+  }
+
+  deleteLesson( id : string) {
+    return this.http.delete(baseURL + 'lessons/' + id)
+  }
 }

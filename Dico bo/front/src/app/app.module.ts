@@ -39,7 +39,7 @@ import { MotsComponent } from './mots/mots.component';
 import { AjouterModuleComponent } from './modules/ajouter-module/ajouter-module.component';
 import { SupprimerModuleComponent } from './modules/supprimer-module/supprimer-module.component';
 import { ModifierModuleComponent } from './modules/modifier-module/modifier-module.component';
-import { AjouterMotComponent } from './mots/ajouter-mot/ajouter-mot.component';
+import { AjouterMotComponent } from './lessons/ajouter-mot/ajouter-mot.component';
 import { SupprimerMotComponent } from './mots/supprimer-mot/supprimer-mot.component';
 import { ModifierMotComponent } from './mots/modifier-mot/modifier-mot.component';
 import { ModifierLessonComponent } from './lessons/modifier-lesson/modifier-lesson.component';

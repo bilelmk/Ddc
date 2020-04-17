@@ -5,4 +5,4 @@ const  MIME_TYPE_MAP = {
 };
 
 
-module.exports = { MIME_TYPE : MIME_TYPE_MAP };
+module.exports =  MIME_TYPE_MAP  ;

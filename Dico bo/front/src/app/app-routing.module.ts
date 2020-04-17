@@ -35,7 +35,7 @@ const routes: Routes = [
         component: LessonsComponent
       },
       {
-        path: 'mots',
+        path: 'modules/:id/:id',
         component: MotsComponent
       },
     ]

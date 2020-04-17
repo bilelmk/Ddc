@@ -14,6 +14,11 @@ const motSchema = new Schema ({
         type :String ,
         required : true
     },
+    lesson : {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'lesson',
+        required : true
+    },
 }, {
     timestamps: true
 });

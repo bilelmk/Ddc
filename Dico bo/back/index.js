@@ -8,9 +8,21 @@ const lessonRoutes = require('./routes/lesson') ;
 const motRoutes = require('./routes/mot') ;
 const userRoutes = require('./routes/user') ;
 
-
-
 const app = express() ;
+
+
+mongoose
+    .connect(
+        "mongodb+srv://username:pass@dico-ozjb6.mongodb.net/test?retryWrites=true&w=majority"
+    )
+    .then(() => {
+        console.log("Connected to database!");
+    })
+    .catch(() => {
+        console.log("Connection failed!");
+    });
+
+
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
@@ -26,18 +38,18 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use("/images", express.static(path.join(__dirname ,"images")));
+app.use("/", express.static(path.join(__dirname ,"angular")));
+
 app.use('/modules' , moduleRoutes);
 app.use('/lessons' , lessonRoutes);
 app.use('/mots' , motRoutes);
 app.use('/users' , userRoutes);
 
+app.use((req, res, next) => {
+    res.sendFile(path.join(__dirname , "angular" , "index.html"))
+});
 
-app.use("/images", express.static(path.join("images")));
 
+module.exports = app;
 
-
-mongoose.connect('mongodb://localhost:27017/Dico' ,  { useUnifiedTopology: true , useNewUrlParser: true} ).then(
-    app.listen(3000)
-).catch(
-    err => console.log(err)
-);
