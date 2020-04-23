@@ -21,7 +21,6 @@ export class ModulesPage implements OnInit {
     this.moduleService.getModules().subscribe(
         res => {
             console.log(res)
-            res.map(m => {m.image = baseURL + m.image.substr(22)});
             this.modules = res ;
         }, err => {
           console.log(err)
@@ -34,5 +33,10 @@ export class ModulesPage implements OnInit {
             .then(() => console.log('Success'))
             .catch((reason: any) => console.log(reason));
       this.router.navigate([id] ,{ relativeTo: this.route } );
+    }
+
+    getBackground() {
+        let random = Math.floor(Math.random() * 8);     // returns a random integer from 0 to 9
+        return 'url(../../assets/img/btn'+random.toString()+'.png)'
     }
 }

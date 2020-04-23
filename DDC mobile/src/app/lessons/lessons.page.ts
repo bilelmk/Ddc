@@ -22,7 +22,6 @@ export class LessonsPage implements OnInit {
         param => {
           this.lessonsService.getLessonsByModuleId(param.id).subscribe(
               res => {
-                res.map(m => {m.image = baseURL + m.image.substr(22)});
                 this.lessons = res
               },
               err => {

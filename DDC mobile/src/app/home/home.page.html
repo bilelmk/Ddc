@@ -9,9 +9,9 @@
       </ion-col>
     </ion-row>
     <ion-row class="ion-align-items-center ion-justify-content-center ion-margin-top">
-      <ion-col size="4" size-md="2">
+      <ion-col size="5" size-md="2">
         <button  class="main-btn" (click)="start()">
-          <span *ngIf="!loading">En Commence</span>
+          <span  *ngIf="!loading">En Commence</span>
           <ion-spinner *ngIf="loading" name="lines"></ion-spinner>
         </button>
       </ion-col>
@@ -20,7 +20,7 @@
   <button *ngIf="!muted" class="sound-btn" (click)="mute()"></button>
   <button *ngIf="muted" class="no-sound-btn" (click)="unmute()"></button>
 
-  <button class="star-btn"  (click)="unmute()"></button>
+  <button class="star-btn"  ></button>
 
 
 </ion-content>

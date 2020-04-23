@@ -25,7 +25,7 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       this.audioService.playAudio() ;
-      // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
