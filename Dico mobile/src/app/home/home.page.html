@@ -1,29 +1,26 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div>
-
-    <p *ngIf="loading" style="background-color: red">a </p>
-
-<!--      <p (click)="speek1('bonjour')" >test</p>-->
-
-<!--      <p (click)="speek2('bonjour')" >test</p>-->
-    <button (click)="start()">En Commence</button>
-
-<!--      <div *ngFor="let module of modules">-->
-<!--&lt;!&ndash;      <p (click)="speek('sdfgv')">{{module.module_name}}</p>&ndash;&gt;-->
-<!--    </div>-->
+<ion-content >
+  <div class="bg-box">
+    <img class="bg " src="../../assets/img/bg.jpg" >
   </div>
+  <ion-grid class="content" >
+    <ion-row class="ion-align-items-center ion-justify-content-center ion-margin-top" >
+      <ion-col class="title slide-in-blurred-top shake-lr" size="8" size-md="6">
+
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-align-items-center ion-justify-content-center ion-margin-top">
+      <ion-col size="4" size-md="2">
+        <button  class="main-btn" (click)="start()">
+          <span *ngIf="!loading">En Commence</span>
+          <ion-spinner *ngIf="loading" name="lines"></ion-spinner>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <button *ngIf="!muted" class="sound-btn" (click)="mute()"></button>
+  <button *ngIf="muted" class="no-sound-btn" (click)="unmute()"></button>
+
+  <button class="star-btn"  (click)="unmute()"></button>
+
+
 </ion-content>

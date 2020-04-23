@@ -17,12 +17,16 @@ export class LessonsComponent implements OnInit {
 
   @ViewChild(MatPaginator , null) paginator: MatPaginator ;
   lessons : Lesson[] = null ;
-  displayedColumns: string[] = [ 'nom' , 'image' ,'action' ];
+  displayedColumns: string[] = [ 'nom' , 'action' ];
   dataSource: MatTableDataSource<Lesson>;
 
   constructor(private route : ActivatedRoute , private lessonsService : LessonsService  ,
               private notificationService : NotificationService , public dialog: MatDialog) {}
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -56,7 +60,6 @@ export class LessonsComponent implements OnInit {
           this.lessons.map(lesson => {
             if(lesson._id == res._id){
               lesson.lesson_name = res.lesson_name ;
-              lesson.image = res.image
             }
           });
           this.dataSource =  new MatTableDataSource(this.lessons);

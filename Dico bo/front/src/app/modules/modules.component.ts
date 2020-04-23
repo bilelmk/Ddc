@@ -17,19 +17,17 @@ export class ModulesComponent  implements OnInit {
 
   @ViewChild(MatPaginator , null) paginator: MatPaginator ;
   modules : Module[] = null ;
-  displayedColumns: string[] = [ 'nom' , 'image' ,'action' ];
+  displayedColumns: string[] = [ 'nom'  ,'action' ];
   dataSource: MatTableDataSource<Module>;
 
   constructor(private moduleService : ModulesService ,  public dialog: MatDialog ,
               private notificationService : NotificationService) { }
 
-  // applyFilter(filterValue: string) {
-  //   this.dataSource.filter = filterValue.trim().toLowerCase();
-  //
-  //   if (this.dataSource.paginator) {
-  //     this.dataSource.paginator.firstPage();
-  //   }
-  // }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
   ngOnInit() {
     this.moduleService.getModules().subscribe(
@@ -47,7 +45,7 @@ export class ModulesComponent  implements OnInit {
 
   openAddDialog(): void {
     const dialogRef = this.dialog.open( AjouterModuleComponent, {
-      width: '800px' , height :'500px' , panelClass: 'custom-dialog-container'
+      width: '800px'  , panelClass: 'custom-dialog-container'
     });
     dialogRef.afterClosed().subscribe(
       res => {
@@ -78,7 +76,7 @@ export class ModulesComponent  implements OnInit {
 
   openEditDialog(module : Module){
     const dialogRef = this.dialog.open( ModifierModuleComponent, {
-      width: '800px' , height :'800px' ,  data : module , panelClass: 'custom-dialog-container'
+      width: '800px' ,  data : module , panelClass: 'custom-dialog-container'
     });
     dialogRef.afterClosed().subscribe(
       res => {
@@ -86,7 +84,6 @@ export class ModulesComponent  implements OnInit {
           this.modules.map(module => {
             if(module._id == res._id){
               module.module_name = res.module_name ;
-              module.image = res.image
             }
           });
           this.dataSource =  new MatTableDataSource(this.modules);
@@ -97,7 +94,7 @@ export class ModulesComponent  implements OnInit {
 
   openAddLessonDialog(id : string ){
     const dialogRef = this.dialog.open( AjouterLessonComponent , {
-      width: '800px' , height :'800px' ,  data : id , panelClass: 'custom-dialog-container'
+      width: '800px' ,  data : id , panelClass: 'custom-dialog-container'
     });
   }
 

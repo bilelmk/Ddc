@@ -6,10 +6,10 @@ const lessonSchema = new Schema ({
         type :String ,
         required : true
     },
-    image : {
-        type :String ,
-        required : true
-    },
+    // image : {
+    //     type :String ,
+    //     required : true
+    // },
     module : {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'module',

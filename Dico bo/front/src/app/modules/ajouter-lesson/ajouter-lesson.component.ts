@@ -22,8 +22,7 @@ export class AjouterLessonComponent implements OnInit {
     this.form = new FormGroup({
       'lesson_name' : new FormControl(null ,
         {validators : [Validators.required , Validators.minLength(3)]} ),
-      'image' : new FormControl(null ,
-        {validators : [Validators.required ] ,asyncValidators : [mimeType] } )})
+     })
   }
 
 
@@ -31,12 +30,11 @@ export class AjouterLessonComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    const postData = new FormData();
-    postData.append("lesson_name", this.form.value.lesson_name);
-    postData.append("image", this.form.value.image, this.form.value.lesson_name);
-    postData.append("module" , this.data) ;
-
-    this.lessonsService.postLesson(postData).subscribe(
+    const lesson = {
+      lesson_name : this.form.value.lesson_name ,
+      module : this.data
+    };
+    this.lessonsService.postLesson(lesson).subscribe(
       res => {
         this.notificationService.openSnackBar('Lesson ajouté avec succés' , 'green-snackbar');
         this.dialogRef.close()
@@ -45,18 +43,6 @@ export class AjouterLessonComponent implements OnInit {
         this.notificationService.openSnackBar('Erreur lors de l\'ajout de lesson' , 'red-snackbar')
       }
     )
-  }
-
-
-  onPickImage(event : Event){
-    const file = (event.target as HTMLInputElement).files[0] ;
-    this.form.patchValue({image : file}) ;
-    this.form.get('image').updateValueAndValidity() ;
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.imagePreview = reader.result as string;
-    };
-    reader.readAsDataURL(file);
   }
 
 }

@@ -1,31 +1,202 @@
-#container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
+.bg {
+  width: 100%;
+  max-height: 100vh;
   margin: 0;
+  padding: 0;
+  z-index: 0;
 }
 
-#container a {
-  text-decoration: none;
+.bg-box {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-ion-content ion-toolbar {
-  --background: translucent;
+.content {
+  width: 100%;
+  z-index: 1;
+  position: absolute;
+  top: 10px;
+}
+
+
+.main-btn {
+  outline: none;
+  width: 100%;
+  height: 3.5rem;
+  background: transparent;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../assets/img/main.png)
+}
+
+.title {
+  width: 100%;
+  height: 12rem;
+  background: transparent;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../assets/img/title1.png)
+}
+
+.star-btn{
+  outline: none;
+  width: 3rem;
+  height: 3rem;
+  background: transparent;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../assets/img/etoile.png) ;
+  position : absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 2;
+}
+
+.sound-btn {
+  outline: none;
+  width: 3rem;
+  height: 3rem;
+  background: transparent;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../assets/img/son.png) ;
+  position : absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 2;
+}
+
+.no-sound-btn {
+  outline: none;
+  width: 3rem;
+  height: 3rem;
+  background: transparent;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../../assets/img/etoile.png) ;
+  position : absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 2;
+}
+
+//.slide-in-blurred-top {
+//
+//}
+
+@-webkit-keyframes slide-in-blurred-top {
+  0% {
+    -webkit-transform: translateY(-1000px) scaleY(2.5) scaleX(0.2);
+    transform: translateY(-1000px) scaleY(2.5) scaleX(0.2);
+    -webkit-transform-origin: 50% 0%;
+    transform-origin: 50% 0%;
+    -webkit-filter: blur(40px);
+    filter: blur(40px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0) scaleY(1) scaleX(1);
+    transform: translateY(0) scaleY(1) scaleX(1);
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-filter: blur(0);
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-blurred-top {
+  0% {
+    -webkit-transform: translateY(-1000px) scaleY(2.5) scaleX(0.2);
+    transform: translateY(-1000px) scaleY(2.5) scaleX(0.2);
+    -webkit-transform-origin: 50% 0%;
+    transform-origin: 50% 0%;
+    -webkit-filter: blur(40px);
+    filter: blur(40px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0) scaleY(1) scaleX(1);
+    transform: translateY(0) scaleY(1) scaleX(1);
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-filter: blur(0);
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+
+.shake-lr {
+
+  -webkit-animation: shake-lr 3.5s ease-out 2s infinite alternate-reverse both;
+  animation: shake-lr 3.5s ease-out 2s infinite alternate-reverse both;
+}
+
+@-webkit-keyframes shake-lr {
+  0%,
+  100% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+  }
+  10% {
+    -webkit-transform: rotate(8deg);
+    transform: rotate(8deg);
+  }
+  20%,
+  40%,
+  60% {
+    -webkit-transform: rotate(-10deg);
+    transform: rotate(-10deg);
+  }
+  30%,
+  50%,
+  70% {
+    -webkit-transform: rotate(10deg);
+    transform: rotate(10deg);
+  }
+  80% {
+    -webkit-transform: rotate(-8deg);
+    transform: rotate(-8deg);
+  }
+  90% {
+    -webkit-transform: rotate(8deg);
+    transform: rotate(8deg);
+  }
+}
+@keyframes shake-lr {
+  0%,
+  100% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+  }
+  10% {
+    -webkit-transform: rotate(8deg);
+    transform: rotate(8deg);
+  }
+  20%,
+  40%,
+  60% {
+    -webkit-transform: rotate(-10deg);
+    transform: rotate(-10deg);
+  }
+  30%,
+  50%,
+  70% {
+    -webkit-transform: rotate(10deg);
+    transform: rotate(10deg);
+  }
+  80% {
+    -webkit-transform: rotate(-8deg);
+    transform: rotate(-8deg);
+  }
+  90% {
+    -webkit-transform: rotate(8deg);
+    transform: rotate(8deg);
+  }
 }

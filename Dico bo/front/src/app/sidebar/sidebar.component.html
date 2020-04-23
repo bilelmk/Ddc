@@ -1,25 +1,30 @@
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side" opened>
-    <p>Auto-resizing sidenav</p>
-    <div><button mat-raised-button color="primary" routerLink="modules">Modules</button></div>
-    <div><button mat-raised-button color="primary" routerLink="lessons">Lessons</button></div>
-    <div><button mat-raised-button color="primary" routerLink="mots">Mots</button></div>
-    <br>
-    <div><button mat-raised-button color="primary" (click)="logout()">Logout</button></div>
+<div class="example-container"  >
+  <mat-toolbar color="primary" class="example-toolbar">
+    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <h1 class="example-app-name">Espace Enseignant</h1>
+  </mat-toolbar>
 
-  </mat-drawer>
-
-  <div class="example-sidenav-content">
-    <app-header>
-      <button mat-icon-button (click)="drawer.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
-
-    </app-header>
-    <div>
-
-    </div>
-    <ng-content></ng-content>
+  <div class="subtoolbar" >
   </div>
 
-</mat-drawer-container>
+  <mat-sidenav-container class="example-sidenav-container"
+                         [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+      <mat-nav-list>
+        <div>
+          <img class="logo" src="../../assets/img/dash%20logo.png" />
+        </div>
+        <div style="text-align: center ; margin-top: 200%">
+          <button class="btn" (click)="logout()">Déconnexion</button>
+          <p>Powered by Bilel MK ©2020.</p>
+        </div>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <ng-content></ng-content>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+</div>

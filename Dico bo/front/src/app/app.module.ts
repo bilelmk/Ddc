@@ -10,23 +10,21 @@ import {
   MatCardModule,
   MatButtonModule,
   MatToolbarModule,
-  MatExpansionModule,
   MatProgressSpinnerModule,
   MatPaginatorModule,
-  MatRippleModule,
   MatFormFieldModule,
   MatTooltipModule,
-  MatSelectModule,
   MatButtonToggleModule,
   MatIconModule,
-  MatNativeDateModule,
-  MatDatepickerModule,
   MatSlideToggleModule,
-  MatCheckboxModule,
   MatTableModule,
   MatSortModule,
   MatSidenavModule,
-  MatSnackBarModule, MatDialogModule, MatAutocompleteModule
+  MatSnackBarModule,
+  MatDialogModule,
+  MatSliderModule,
+  MatGridListModule,
+  MatListModule,
 } from '@angular/material';
 
 
@@ -45,7 +43,6 @@ import { ModifierMotComponent } from './mots/modifier-mot/modifier-mot.component
 import { ModifierLessonComponent } from './lessons/modifier-lesson/modifier-lesson.component';
 import { AjouterLessonComponent } from './modules/ajouter-lesson/ajouter-lesson.component';
 import { SupprimerLessonComponent } from './lessons/supprimer-lesson/supprimer-lesson.component';
-import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
@@ -65,8 +62,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     ModifierLessonComponent,
     AjouterLessonComponent,
     SupprimerLessonComponent,
-    HeaderComponent,
     SidebarComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -79,26 +76,22 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     MatCardModule,
     MatButtonModule,
     MatToolbarModule,
-    MatExpansionModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
-    MatRippleModule,
     MatFormFieldModule,
     MatTooltipModule,
-    MatSelectModule,
     MatButtonToggleModule,
     MatIconModule,
-    MatNativeDateModule,
-    MatDatepickerModule,
     MatSlideToggleModule,
-    MatCheckboxModule,
     MatTableModule,
     MatSortModule,
     ReactiveFormsModule,
     MatSidenavModule,
     MatSnackBarModule,
     MatDialogModule,
-    MatAutocompleteModule
+    MatSliderModule,
+    MatGridListModule,
+    MatListModule,
 
   ],
   providers: [],

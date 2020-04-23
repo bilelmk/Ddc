@@ -2,12 +2,48 @@ table {
   width: 100%;
 }
 
-img{
-  margin: 10px;
-  width: 120px;
-  height: 120px;
-}
-
 tr ,th, td{
   text-align: center !important;
+}
+
+td {
+  padding: 10px !important;
+}
+
+button {
+  margin: 5px;
+  padding: 0  ;
+}
+
+input{
+  margin: 8px 10px 0 0;
+  font-size: 100%;
+  color: #4d4d4d;
+  padding-left: 15px;
+  padding-right: 15px;
+  outline: none;
+  border-radius: 10px;
+  border: 1px solid rgba(96, 96, 96, 0.29);
+  width: 50%;
+  height: 45px;
+}
+
+mat-card-header {
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 12px 15px 12px 15px;
+  border-radius: 5px;
+  background-color: #e7e7e7;
+  border: none;
+}
+
+.btn:hover {
+  background-color: #cbcbcb;
+}
+
+mat-card {
+  background-color: transparent ;
+  box-shadow: none !important;
 }

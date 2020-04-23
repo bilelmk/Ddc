@@ -19,7 +19,8 @@ import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule],
+    HttpClientModule
+  ],
 
   providers: [
     StatusBar,

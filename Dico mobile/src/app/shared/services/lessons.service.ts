@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Module } from '../classes/module';
 import { Observable } from 'rxjs';
 import { baseURL } from '../baseurl';
+import { Lesson } from '../clasees/lesson';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ModuleService {
+export class LessonsService {
 
   constructor(private http:HttpClient) { }
 
-  getModules() : Observable<Module[]>{
-    return this.http.get<Module[]>(baseURL + 'modules') ;
+  getLessonsByModuleId( id : string) : Observable<Lesson[]>{
+    return this.http.get<Lesson[]>(baseURL + 'lessons/' + id) ;
   }
+
 }

@@ -1,28 +1,6 @@
 const express = require('express') ;
 const Lesson = require('../models/lesson') ;
-const MIME_TYPE_MAP = require('../middleware/mime-type') ;
-const multer = require('multer') ;
 const router = express.Router() ;
-
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        const isValid = MIME_TYPE_MAP[file.mimetype];
-        let error = new Error("Invalid mime type");
-        if (isValid) {
-            error = null;
-        }
-        cb(error, "images");
-    },
-    filename: (req, file, cb) => {
-        const name = file.originalname
-            .toLowerCase()
-            .split(" ")
-            .join("-");
-        const ext = MIME_TYPE_MAP[file.mimetype];
-        cb(null, name + "-" + Date.now() + "." + ext);
-    }
-});
-
 
 
 router.route('/')
@@ -31,11 +9,9 @@ router.route('/')
         res.end('GET operation not supported on /lessons');
     })
 
-    .post(multer({ storage: storage }).single("image") ,(req, res, next) => {
-        const url = req.protocol + "://" + req.get("host");
+    .post((req, res, next) => {
         var  lesson = new Lesson({
             lesson_name : req.body.lesson_name ,
-            image: url + "/images/" + req.file.filename ,
             module : req.body.module
         }) ;
         lesson.save()
@@ -83,17 +59,10 @@ router.route('/:Id')
     })
 
     // Put lessons ( id = lesson_id )
-    .put(multer({ storage: storage }).single("image") ,(req, res, next) => {
-        let imagePath = req.body.image ;
-        if(req.file){
-            const url = req.protocol + "://" + req.get("host");
-            imagePath = url + "/images/" + req.file.filename ;
-        }
-
+    .put((req, res, next) => {
         var  lesson = new Lesson({
-            _id : req.body._id,
+            _id : req.params.Id,
             lesson_name : req.body.lesson_name ,
-            image: imagePath ,
             module : req.body.module
         }) ;
 

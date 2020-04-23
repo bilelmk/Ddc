@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>mots</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngFor="let mot of mots">
+    <div (click)="speek(mot.name)">
+      <p >{{mot.name}}</p>
+      <img style="width: 50px" src="{{mot.image}}">
+    </div>
+  </div>
+
+</ion-content>

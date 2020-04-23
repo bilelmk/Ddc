@@ -1,66 +1,66 @@
-
-<h4>Ajouter <button mat-button (click)="openAddDialog()">Ajouter</button></h4>
-<table  mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-hover table" matSort>
-
-  <ng-container matColumnDef="image">
-    <th class="text-center title" mat-header-cell *matHeaderCellDef > Image </th>
-    <td  mat-cell *matCellDef="let element">
-      <img src="{{element.image}}">
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="nom">
-    <th class="text-center title" mat-header-cell *matHeaderCellDef > Nom </th>
-    <td  mat-cell *matCellDef="let element"> {{element.module_name}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="action" >
-    <th class="text-center title" mat-header-cell *matHeaderCellDef > Action </th>
-    <td class="text-center" mat-cell *matCellDef="let element">
-      <button mat-raised-button
-              type="button"
-              matTooltip="Liste des lessons"
-              [matTooltipPosition]="'above'"
-              class="btn btn-primary  btn-link btn-just-icon"
-              [routerLink]="['./',element._id]">
-        <i class="material-icons icon-blue" >
-          list
-        </i>
-      </button>
-      <button mat-raised-button
-              type="button"
-              matTooltip="Ajouter un lesson"
-              [matTooltipPosition]="'above'"
-              class="btn btn-primary  btn-link btn-just-icon"
-              (click)="openAddLessonDialog(element._id)">
+<mat-card >
+  <mat-card-header>
+      <input (keyup)="applyFilter($event)" type="search" matInput placeholder="Recherche">
+      <button class="btn" (click)="openAddDialog()"  matTooltip="Ajouter un module" [matTooltipPosition]="'above'">
         <i class="material-icons icon-blue" >
           add
         </i>
       </button>
-      <button mat-raised-button
-              type="button"
-              matTooltip="Modifier"
-              [matTooltipPosition]="'above'"
-              class="btn btn-primary btn-link btn btn-just-icon"
-              (click)="openEditDialog(element)">
-        <i class="material-icons icon-blue">
-          edit
-        </i>
-      </button>
-      <button mat-raised-button
-              type="button"
-              matTooltip="Supprimer"
-              [matTooltipPosition]="'above'"
-              class="btn btn-danger btn-link btn-sm btn-just-icon"
-              (click)="openDeleteDialog(element._id)">
-        <i class="material-icons">
-          close
-        </i>
-      </button>
-    </td>
-  </ng-container>
+  </mat-card-header>
+  <mat-card-content>
+    <table  mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-hover table" matSort>
 
-  <tr style="background-color:#f2f4f7 ;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
-<mat-paginator [pageSizeOptions]="[10, 20, 50]"></mat-paginator>
+      <ng-container matColumnDef="nom">
+        <th class="text-center title" mat-header-cell *matHeaderCellDef > Nom </th>
+        <td  mat-cell *matCellDef="let element"> {{element.module_name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action" >
+        <th class="text-center title" mat-header-cell *matHeaderCellDef > Action </th>
+        <td class="text-center" mat-cell *matCellDef="let element">
+          <button type="button"
+                  matTooltip="Liste des lessons"
+                  [matTooltipPosition]="'above'"
+                  class="btn-just-icon btn"
+                  [routerLink]="['./',element._id]">
+            <i class="material-icons icon-blue" >
+              list
+            </i>
+          </button>
+          <button type="button"
+                  matTooltip="Ajouter un lesson"
+                  [matTooltipPosition]="'above'"
+                  class="btn"
+                  (click)="openAddLessonDialog(element._id)">
+            <i class="material-icons icon-blue" >
+              add
+            </i>
+          </button>
+          <button
+                  type="button"
+                  matTooltip="Modifier le module"
+                  [matTooltipPosition]="'above'"
+                  class="btn"
+                  (click)="openEditDialog(element)">
+            <i class="material-icons icon-blue">
+              edit
+            </i>
+          </button>
+          <button type="button"
+                  matTooltip="Supprimer le module"
+                  [matTooltipPosition]="'above'"
+                  class="btn"
+                  (click)="openDeleteDialog(element._id)">
+            <i class="material-icons">
+              close
+            </i>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr style="background-color:#f2f4f7 ;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[10, 20, 50]"></mat-paginator>
+  </mat-card-content>
+</mat-card>

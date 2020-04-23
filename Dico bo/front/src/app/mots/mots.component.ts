@@ -21,14 +21,10 @@ export class MotsComponent implements OnInit {
 
   constructor(private motsSerice : MotsService ,  public dialog : MatDialog , private route : ActivatedRoute) { }
 
-  // applyFilter(filterValue: string) {
-  //   this.dataSource.filter = filterValue.trim().toLowerCase();
-  //
-  //   if (this.dataSource.paginator) {
-  //     this.dataSource.paginator.firstPage();
-  //   }
-  // }
-
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
   ngOnInit() {
     this.route.params.subscribe(

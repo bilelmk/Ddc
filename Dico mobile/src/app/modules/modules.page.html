@@ -1,19 +1,16 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>modules</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-
-  <div *ngFor="let module of modules">
-    <p (click)="speek(module.module_name)" >{{module.module_name}}</p>
-    <img style="width: 50px" src="{{module.image}}">
+  <div class="bg-box">
+    <img class="bg" src="../../assets/img/bg.jpg" >
   </div>
-  <p (click)="speek('france')" >france</p>
-
-
-  <p (click)="speek('corona')" >corona</p>
-  <p (click)="speek('virus')" >virus</p>
-
+  <ion-grid class="content" >
+    <ion-row class="ion-justify-content-center ion-align-self-center">
+      <ion-col (click)="speek(module.module_name, module._id)" class="menu-btn ion-margin slide-in-blurred-top btn" size="3"
+               size-md="2" *ngFor="let module of modules" >
+        <div>
+          <p >{{module.module_name}}</p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+

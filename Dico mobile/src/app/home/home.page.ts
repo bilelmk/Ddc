@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ModuleService } from '../shared/services/module.service';
-import { Module } from '../shared/classes/module';
-
-
 import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
 import { Router } from '@angular/router';
-
-
+import {AudioService} from '../shared/services/audio.service';
 
 @Component({
   selector: 'app-home',
@@ -15,20 +10,19 @@ import { Router } from '@angular/router';
 })
 export class HomePage implements OnInit{
 
-  modules : Module[] = null ;
+  muted = false ;
+  loading = false ;
 
-  loading : boolean = false ;
-
-  constructor( private tts: TextToSpeech ,private router:Router  ) {}
+  constructor( private tts: TextToSpeech , private router : Router ,  private audioService : AudioService) {}
 
   ngOnInit(){
-
   }
 
   start(){
     this.loading = true ;
     this.tts.speak({locale : 'fr-FR' , text :"En Commence"})
         .then(() => {
+          // this.audioService.stopAudio() ;
           this.loading = false ;
           this.router.navigate(['modules']);
         })
@@ -36,4 +30,13 @@ export class HomePage implements OnInit{
   }
 
 
+    mute() {
+      this.muted = !this.muted ;
+        this.audioService.muteAudio()
+    }
+
+    unmute() {
+        this.muted = !this.muted ;
+        this.audioService.unmuteAudio()
+    }
 }
