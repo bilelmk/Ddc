@@ -1,6 +1,6 @@
 <ion-content >
     <ion-grid class="content"  >
-      <ion-row class="ion-justify-content-center ion-align-self-center">
+      <ion-row class="ion-justify-content-center ion-align-self-center margin-top-70">
         <ion-col (click)="speek(module.module_name, module._id)" class="menu-btn ion-margin"
                  size="3" size-md="2" *ngFor="let module of modules" [ngStyle]="{'background-image' : getBackground() }">
           <div>
@@ -9,5 +9,8 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+    <button *ngIf="!muted" class="sound-btn" (click)="mute()"></button>
+    <button *ngIf="muted" class="no-sound-btn" (click)="unmute()"></button>
+<!--    <button class="star-btn"  ></button>-->
 </ion-content>
 

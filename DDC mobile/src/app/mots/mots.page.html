@@ -2,10 +2,20 @@
   <ion-grid class="content"  >
     <ion-row class="ion-justify-content-center ion-align-self-center">
         <ion-col size="12">
-            <input />
+            <input (change)="recherche($event)" class="recherche" placeholder="Recherche"/>
         </ion-col>
         <ion-col size="12" *ngFor="let mot of mots">
-            {{mot.name}}
+            <ion-row class="ion-margin ion-justify-content-center">
+                <ion-col size="7" >
+                    <div class="word-content">
+                        <span class="word">{{mot.name}}</span>
+                        <button class="sound-btn" (click)="speek(mot.name)"></button>
+                    </div>
+                </ion-col>
+                <ion-col size="3" offset="1">
+                    <img src="{{mot.image}}" style="width : 100%">
+                </ion-col>
+            </ion-row>
         </ion-col>
 <!--      <ion-col (click)="speek(module.module_name, module._id)" class="menu-btn ion-margin"-->
 <!--               size="3" size-md="2" *ngFor="let module of modules" [ngStyle]="{'background-image' : getBackground() }">-->
@@ -15,5 +25,10 @@
 <!--      </ion-col>-->
     </ion-row>
   </ion-grid>
+
+  <button *ngIf="!muted" class="sound-btn" (click)="mute()"></button>
+  <button *ngIf="muted" class="no-sound-btn" (click)="unmute()"></button>
+  <button class="back-btn" (click)="back()"  ></button>
+
 </ion-content>
 

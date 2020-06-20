@@ -5,12 +5,10 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from "@angular/common/http";
-
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
-
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +25,8 @@ import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
     SplashScreen,
     ScreenOrientation,
     TextToSpeech,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+
   ],
   bootstrap: [AppComponent]
 })

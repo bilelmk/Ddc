@@ -1,6 +1,6 @@
 <ion-content >
   <ion-grid class="content"  >
-    <ion-row class="ion-justify-content-center ion-align-self-center">
+    <ion-row class="ion-justify-content-center ion-align-self-center margin-top-70">
       <ion-col  (click)="speek(lesson.lesson_name, lesson._id)" class="menu-btn ion-margin"
                size="3" size-md="2" *ngFor="let lesson of lessons" [ngStyle]="{'background-image' : getBackground() }">
         <div>
@@ -11,5 +11,5 @@
   </ion-grid>
   <button *ngIf="!muted" class="sound-btn" (click)="mute()"></button>
   <button *ngIf="muted" class="no-sound-btn" (click)="unmute()"></button>
-  <button class="star-btn"  ></button>
+  <button class="back-btn" (click)="back()" ></button>
 </ion-content>

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LessonsService } from '../shared/services/lessons.service';
 import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
 import { AudioService } from '../shared/services/audio.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-lessons',
@@ -16,7 +17,7 @@ export class LessonsPage implements OnInit {
   muted = false ;
 
   constructor(private tts: TextToSpeech , private route : ActivatedRoute , private lessonsService : LessonsService ,
-              private router : Router , private audioService : AudioService ) { }
+              private router : Router , private audioService : AudioService , private location: Location ) { }
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -45,15 +46,18 @@ export class LessonsPage implements OnInit {
       return ' url(../../assets/img/btn' + random.toString() + '.png) ' ;
   }
 
-    mute() {
-        this.muted = !this.muted ;
-        this.audioService.stopAudio()
+  mute() {
+    this.muted = !this.muted ;
+    this.audioService.stopAudio()
+  }
 
-    }
+  unmute() {
+    this.muted = !this.muted ;
+    this.audioService.playAudio()
+  }
 
-    unmute() {
-        this.muted = !this.muted ;
-        this.audioService.playAudio()
-    }
+  back() {
+      this.location.back();
+  }
 
 }
