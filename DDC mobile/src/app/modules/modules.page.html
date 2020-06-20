@@ -2,7 +2,7 @@
     <ion-grid class="content"  >
       <ion-row class="ion-justify-content-center ion-align-self-center">
         <ion-col (click)="speek(module.module_name, module._id)" class="menu-btn ion-margin"
-                 size="3" size-md="2" *ngFor="let module of modules" [ngStyle]="{'background-image' : getBackground()}">
+                 size="3" size-md="2" *ngFor="let module of modules" [ngStyle]="{'background-image' : getBackground() }">
           <div>
             <p class="text">{{module.module_name}}</p>
           </div>

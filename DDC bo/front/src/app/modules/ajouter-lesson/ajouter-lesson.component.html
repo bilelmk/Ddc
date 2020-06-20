@@ -1,17 +1,17 @@
-<div class="header">
-  <h2 mat-dialog-title >Ajouter un lesson</h2>
+<div class="dialog ">
+  <div class="header">
+    <h2 mat-dialog-title >Ajouter un lesson</h2>
+  </div>
+
+  <mat-dialog-content class="scale-in-center">
+    <form [formGroup]="form" (ngSubmit)="onSaveLesson()">
+
+      <mat-form-field appearance="outline" >
+        <mat-label>Nom du lesson</mat-label>
+        <input formControlName="lesson_name" matInput type="text" name="lesson_name" placeholder="Nom du Lesson">
+      </mat-form-field>
+
+      <button mat-raised-button type="submit"  class="submit-btn" [disabled]="!form.valid">Ajouter</button>
+    </form>
+  </mat-dialog-content>
 </div>
-
-<mat-dialog-content>
-  <form [formGroup]="form" (ngSubmit)="onSaveLesson()">
-
-    <mat-form-field appearance="outline" >
-      <mat-label>Nom du lesson</mat-label>
-      <input formControlName="lesson_name" matInput type="text" name="lesson_name" placeholder="Nom du Lesson">
-    </mat-form-field>
-
-
-    <button mat-raised-button type="submit" color="primary" [disabled]="!form.valid">Ajouter</button>
-  </form>
-</mat-dialog-content>
-

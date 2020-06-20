@@ -1,0 +1,40 @@
+.toolbar {
+  box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+  position: relative;
+  z-index: 2;
+  background-color: #af0404;
+  color: #eaeaea;
+}
+
+
+.subtoolbar {
+  height: 80px;
+  background-color: #414141;
+}
+
+
+.title {
+  font-size: 1rem;
+  margin-left: 8px;
+}
+
+
+mat-sidenav {
+  width: 250px;
+}
+
+.logo {
+  padding: 10%;
+  width: 80%;
+}
+
+.btn {
+  padding: 12px 15px 12px 15px;
+  border-radius: 5px;
+  background-color: #e7e7e7;
+  border: none;
+}
+
+.btn:hover {
+  background-color: #cbcbcb;
+}

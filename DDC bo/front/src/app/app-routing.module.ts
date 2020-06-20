@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { ModulesComponent } from './modules/modules.component';
 import { LessonsComponent } from './lessons/lessons.component';
 import { MotsComponent } from './mots/mots.component';
+import { AuthGuard } from './shared/services/auth.guard';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent ,
+    canActivate : [AuthGuard] ,
     children : [
       {
         path: '',

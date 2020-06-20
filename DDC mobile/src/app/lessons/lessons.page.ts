@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Lesson } from '../shared/clasees/lesson';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LessonsService } from '../shared/services/lessons.service';
-import { baseURL } from '../shared/baseurl';
 import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
+import { AudioService } from '../shared/services/audio.service';
 
 @Component({
   selector: 'app-lessons',
@@ -13,9 +13,10 @@ import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
 export class LessonsPage implements OnInit {
 
   lessons : Lesson[] = null ;
+  muted = false ;
 
   constructor(private tts: TextToSpeech , private route : ActivatedRoute , private lessonsService : LessonsService ,
-              private router : Router) { }
+              private router : Router , private audioService : AudioService ) { }
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -38,5 +39,21 @@ export class LessonsPage implements OnInit {
             .catch((reason: any) => console.log(reason));
     this.router.navigate([id] ,{ relativeTo: this.route } );
   }
+
+  getBackground() {
+      let random = Math.floor(Math.random() * 8);     // returns a random integer from 0 to 9
+      return ' url(../../assets/img/btn' + random.toString() + '.png) ' ;
+  }
+
+    mute() {
+        this.muted = !this.muted ;
+        this.audioService.stopAudio()
+
+    }
+
+    unmute() {
+        this.muted = !this.muted ;
+        this.audioService.playAudio()
+    }
 
 }

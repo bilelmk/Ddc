@@ -23,6 +23,7 @@ export class MotsPage implements OnInit {
               res => {
                 res.map(m => {m.image = baseURL + m.image.substr(22)});
                 this.mots = res ;
+                console.log(this.mots)
               },
               err => {
                 console.log(err)

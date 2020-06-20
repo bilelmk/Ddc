@@ -8,7 +8,6 @@ const motSchema = new Schema ({
     },
     explication : {
         type :String ,
-        required : true
     },
     image : {
         type :String ,

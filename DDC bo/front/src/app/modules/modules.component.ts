@@ -11,7 +11,7 @@ import {AjouterLessonComponent} from './ajouter-lesson/ajouter-lesson.component'
 @Component({
   selector: 'app-modules',
   templateUrl: './modules.component.html',
-  styleUrls: ['./modules.component.css']
+  styleUrls: ['./modules.component.scss']
 })
 export class ModulesComponent  implements OnInit {
 
@@ -37,6 +37,7 @@ export class ModulesComponent  implements OnInit {
         this.dataSource.paginator = this.paginator;
       },
       (error) => {
+        console.log(error)
         this.notificationService.openSnackBar('Erreur d\'acces au serveur' , 'red-snackbar')
       }
     )

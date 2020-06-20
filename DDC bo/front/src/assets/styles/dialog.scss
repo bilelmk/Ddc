@@ -1,0 +1,39 @@
+.custom-dialog-container .mat-dialog-container {
+  padding: 0;
+  margin: 0;
+}
+
+.dialog {
+  input[type="file"]{
+    visibility: hidden;
+  }
+
+  .header {
+    width: 100%;
+    background-color: #414141;
+    color: #eaeaea;
+  }
+
+  h2 {
+    padding: 20px ;
+  }
+
+  mat-dialog-content {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: 0;
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  button{
+    width: 100%;
+  }
+
+  .image-preview {
+    width: 100%;
+  }
+
+}

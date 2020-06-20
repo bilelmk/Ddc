@@ -1,4 +1,4 @@
-<mat-card >
+<mat-card class="scale-in-center" >
   <mat-card-header>
       <input (keyup)="applyFilter($event)" type="search" matInput placeholder="Recherche">
       <button class="btn" (click)="openAddDialog()"  matTooltip="Ajouter un module" [matTooltipPosition]="'above'">
@@ -61,6 +61,6 @@
       <tr style="background-color:#f2f4f7 ;" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <mat-paginator [pageSizeOptions]="[10, 20, 50]"></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[7, 10, 20]"></mat-paginator>
   </mat-card-content>
 </mat-card>

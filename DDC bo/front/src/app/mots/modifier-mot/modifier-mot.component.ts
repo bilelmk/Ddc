@@ -5,11 +5,12 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { mimeType } from '../../shared/mime-type.validator';
 import { NotificationService } from '../../shared/services/notification.service';
 import { Mot } from '../../shared/clasees/mot';
+import { SpinnerService }from '../../shared/services/spinner.service';
 
 @Component({
   selector: 'app-modifier-mot',
   templateUrl: './modifier-mot.component.html',
-  styleUrls: ['./modifier-mot.component.css']
+  styleUrls: ['./modifier-mot.component.scss']
 })
 export class ModifierMotComponent implements OnInit {
 
@@ -17,7 +18,8 @@ export class ModifierMotComponent implements OnInit {
   imagePreview: string = this.data.image;
 
   constructor(private motsService : MotsService , private notificationService : NotificationService ,
-              public dialogRef: MatDialogRef<ModifierMotComponent> , @Inject(MAT_DIALOG_DATA) public data: Mot ) { }
+              public dialogRef: MatDialogRef<ModifierMotComponent> , @Inject(MAT_DIALOG_DATA) public data: Mot ,
+              private spinnerService : SpinnerService) { }
 
 
   ngOnInit() {
@@ -52,13 +54,16 @@ export class ModifierMotComponent implements OnInit {
         lesson : this.data.lesson._id
       }
     }
+    this.spinnerService.activate() ;
     this.motsService.putMot(postData , this.data._id).subscribe(
       res => {
-        this.notificationService.openSnackBar('Mot modifié avec succés' , 'green-snackbar')
+        this.notificationService.openSnackBar('Mot modifié avec succés' , 'green-snackbar');
+        this.spinnerService.deactivate() ;
         this.dialogRef.close(res)
       },
       err => {
-        this.notificationService.openSnackBar('Erreur lors de la modification de mot' , 'red-snackbar')
+        this.notificationService.openSnackBar('Erreur lors de la modification de mot' , 'red-snackbar') ;
+        this.spinnerService.deactivate() ;
       }
     )
   }

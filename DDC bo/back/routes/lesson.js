@@ -44,7 +44,7 @@ router.route('/:Id')
     // Find lessons by module id ( id = module_id )
     .get((req, res, next) => {
         Lesson.find({module : req.params.Id })
-            .populate('module')
+            // .populate('module')
             .then(lessons => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');

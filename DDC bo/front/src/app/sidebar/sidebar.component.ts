@@ -1,33 +1,24 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '../shared/services/auth.service';
-import { MediaMatcher } from '@angular/cdk/layout';
+import { Location } from '@angular/common';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent implements OnInit , OnDestroy{
+export class SidebarComponent  {
 
-  mobileQuery: MediaQueryList;
-  private _mobileQueryListener: () => void;
-
-  constructor(private authService : AuthService,  changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener)
-  }
-
-
-  ngOnInit() {
-  }
+  constructor(private authService : AuthService , private location : Location , private router : Router) {}
 
   logout() {
     this.authService.logout()
   }
 
-  ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
+  back() {
+    if(this.router.url != "/home/modules") {
+      this.location.back() ;
+    }
   }
-
 }

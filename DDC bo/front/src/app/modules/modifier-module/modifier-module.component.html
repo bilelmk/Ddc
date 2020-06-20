@@ -1,15 +1,18 @@
-<div class="header">
-  <h2 mat-dialog-title >Modifier le module</h2>
+<div class="dialog ">
+  <div class="header">
+    <h2 mat-dialog-title >Modifier le module</h2>
+  </div>
+
+  <mat-dialog-content class="scale-in-center">
+    <form [formGroup]="form" (ngSubmit)="onSaveModule()">
+
+      <mat-form-field appearance="outline" >
+        <mat-label>Nom du module</mat-label>
+        <input formControlName="module_name" matInput type="text" name="module_name" placeholder="Nom du Module">
+      </mat-form-field>
+
+      <button mat-raised-button type="submit" class="submit-btn" [disabled]="!form.valid">Save</button>
+    </form>
+  </mat-dialog-content>
+
 </div>
-
-<mat-dialog-content>
-  <form [formGroup]="form" (ngSubmit)="onSaveModule()">
-
-    <mat-form-field appearance="outline" >
-      <mat-label>Nom du module</mat-label>
-      <input formControlName="module_name" matInput type="text" name="module_name" placeholder="Nom du Module">
-    </mat-form-field>
-
-    <button mat-raised-button type="submit" color="primary" [disabled]="!form.valid">Save</button>
-  </form>
-</mat-dialog-content>

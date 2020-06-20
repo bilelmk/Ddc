@@ -1,0 +1,74 @@
+.container {
+  height: 100vh;
+
+  .row {
+    height: 100%;
+
+    .mat-form-field-flex {
+      padding-top: 6px !important;
+      padding-bottom: 6px !important;
+    }
+  }
+
+  mat-card {
+    box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2), 0px 16px 24px 2px rgba(0, 0, 0, 0.14), 0px 6px 30px 5px rgba(0, 0, 0, 0.12) !important;
+    border-radius: 0;
+  }
+
+  .dialog-btn {
+    padding: 10px;
+    margin: 3%;
+    width: 94%;
+    background-color: #af0404;
+    color: #f9f7f7;
+    border: none;
+    outline : none;
+    transition: 0.4s;
+    cursor: pointer;
+  }
+
+  .dialog-btn:hover:not([disabled]) {
+    background-color: #c30404;
+  }
+
+  button[disabled]{
+    background: #cccccc;
+  }
+}
+
+
+
+.scale-in-center {
+  -webkit-animation: scale-in-center 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: scale-in-center 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@-webkit-keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+
+
+

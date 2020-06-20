@@ -1,14 +1,14 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { mimeType } from '../../shared/mime-type.validator';
 import { MotsService } from '../../shared/services/mots.service';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { NotificationService } from '../../shared/services/notification.service';
+import { SpinnerService } from '../../shared/services/spinner.service';
 
 @Component({
   selector: 'app-ajouter-mot',
   templateUrl: './ajouter-mot.component.html',
-  styleUrls: ['./ajouter-mot.component.css']
+  styleUrls: ['./ajouter-mot.component.scss']
 })
 export class AjouterMotComponent implements OnInit {
 
@@ -16,7 +16,8 @@ export class AjouterMotComponent implements OnInit {
   imagePreview: string;
 
   constructor(private motsService : MotsService , private notificationService : NotificationService,
-              public dialogRef: MatDialogRef<AjouterMotComponent> , @Inject(MAT_DIALOG_DATA) public data: string ) { }
+              public dialogRef: MatDialogRef<AjouterMotComponent> , @Inject(MAT_DIALOG_DATA) public data: string ,
+              private spinnerService : SpinnerService) { }
 
 
   ngOnInit() {
@@ -24,9 +25,8 @@ export class AjouterMotComponent implements OnInit {
       'name' : new FormControl(null ,
         {validators : [Validators.required , Validators.minLength(3)]} ),
       'explication' : new FormControl(null ,
-        {validators : [Validators.required , Validators.minLength(3)]} ),
-      'image' : new FormControl(null ,
-        {validators : [Validators.required ] ,asyncValidators : [mimeType] } )}
+        {validators : [ Validators.minLength(3)]} ),
+      'image' : new FormControl(null  )}
         )
   }
 
@@ -38,14 +38,17 @@ export class AjouterMotComponent implements OnInit {
     postData.append("name", this.form.value.name);
     postData.append("explication", this.form.value.explication);
     postData.append("image", this.form.value.image, this.form.value.name);
-    postData.append("lesson" , this.data)
+    postData.append("lesson" , this.data);
+    this.spinnerService.activate() ;
     this.motsService.postMot(postData).subscribe(
       res => {
         this.notificationService.openSnackBar('Mot ajouté avec succés' , 'green-snackbar');
+        this.spinnerService.deactivate() ;
         this.dialogRef.close(res)
       },
       err => {
-        this.notificationService.openSnackBar('Erreur lors de l\'ajout de mot' , 'red-snackbar')
+        this.notificationService.openSnackBar('Erreur lors de l\'ajout de mot' , 'red-snackbar') ;
+        this.spinnerService.deactivate() ;
       }
     )
   }

@@ -1,16 +1,19 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>mots</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
-  <div *ngFor="let mot of mots">
-    <div (click)="speek(mot.name)">
-      <p >{{mot.name}}</p>
-      <img style="width: 50px" src="{{mot.image}}">
-    </div>
-  </div>
-
+<ion-content >
+  <ion-grid class="content"  >
+    <ion-row class="ion-justify-content-center ion-align-self-center">
+        <ion-col size="12">
+            <input />
+        </ion-col>
+        <ion-col size="12" *ngFor="let mot of mots">
+            {{mot.name}}
+        </ion-col>
+<!--      <ion-col (click)="speek(module.module_name, module._id)" class="menu-btn ion-margin"-->
+<!--               size="3" size-md="2" *ngFor="let module of modules" [ngStyle]="{'background-image' : getBackground() }">-->
+<!--        <div>-->
+<!--          <p class="text">{{module.module_name}}</p>-->
+<!--        </div>-->
+<!--      </ion-col>-->
+    </ion-row>
+  </ion-grid>
 </ion-content>
+

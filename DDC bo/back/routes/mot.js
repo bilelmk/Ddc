@@ -61,7 +61,7 @@ router.route('/:Id')
     // Find Mots by lesson id ( id = module_id )
     .get((req, res, next) => {
         Mot.find({lesson : req.params.Id })
-            .populate('lesson')
+            // .populate('lesson')
             .then(lessons => {
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');

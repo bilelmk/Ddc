@@ -13,7 +13,6 @@ const app = express() ;
 
 mongoose
     .connect('mongodb://localhost:27017/Dico' ,  { useUnifiedTopology: true , useNewUrlParser: true}
-        // "mongodb+srv://username:pass@dico-ozjb6.mongodb.net/test?retryWrites=true&w=majority"
     )
     .then(() => {
         console.log("Connected to database!");

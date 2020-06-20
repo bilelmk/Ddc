@@ -1,0 +1,30 @@
+button {
+  outline: none !important;
+  transition: 0.4s;
+}
+
+.btn {
+  transition: 0.5s !important;
+  padding: 12px 15px 12px 15px !important;
+  border-radius: 5px !important;
+  background-color: #e7e7e7 !important;
+  border: none !important;
+  margin-left: 10px;
+}
+
+.btn:hover {
+  background-color: #cbcbcb !important;
+}
+
+.submit-btn {
+  cursor: pointer;
+  background-color: #af0404 !important;
+  color : #e7e7e7 !important;
+}
+
+.back-btn{
+  color: #e7e7e7;
+  mat-icon {
+    font-size: 30px;
+  }
+}

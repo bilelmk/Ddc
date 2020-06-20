@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+@import "assets/styles/animation.scss";
+@import "assets/styles/dialog.scss";
+@import "assets/styles/snackbar.scss";
+@import "assets/styles/button.scss";
+@import "assets/styles/table.scss" ;
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.row {
+  margin: 0 !important;
+}
+
+.spinner {
+  width: 90px;
+}

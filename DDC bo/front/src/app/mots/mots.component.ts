@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-mots',
   templateUrl: './mots.component.html',
-  styleUrls: ['./mots.component.css']
+  styleUrls: ['./mots.component.scss']
 })
 export class MotsComponent implements OnInit {
 
